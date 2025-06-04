@@ -48,8 +48,30 @@
         }
 
         .logo img {
+            width: 55px;
+            height: 55px;
+            object-fit: contain;
+            display: block;
+            background: transparent;
+	    transform: translateY(5px);
+        }
+
+        .logo-fallback {
+            display: none;
             width: 36px;
             height: 36px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            text-align: center;
+            line-height: 36px;
+        }
+
+        .logo img[src=""] + .logo-fallback,
+        .logo img:not([src]) + .logo-fallback {
+            display: block;
         }
 
         .logo-text {
@@ -646,7 +668,8 @@
     <header class="header">
         <div class="nav-container">
             <div class="logo">
-                <img src="assets/logo.png" alt="MagiChain Logo">
+                <img src="./logo.png" alt="MagiChain Logo" onload="this.style.display='block'; this.nextElementSibling.style.display='none';" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="logo-fallback">MC</div>
                 <span class="logo-text">MagiChain</span>
             </div>
             <nav>
